@@ -12,7 +12,7 @@ class SdpOnBoardingController extends GetxController {
   Rx<int> currentPageIndex = 0.obs;
 
   /// Update Current Index when page Scroll
-  void updatePageIndicator(index) => currentPageIndex = index;
+  void updatePageIndicator(index) => currentPageIndex.value = index;
 
   /// Jump to the specific dot selected page.
   void dotNavigationClick(index) {
@@ -33,7 +33,8 @@ class SdpOnBoardingController extends GetxController {
 
   /// Update Current Index & Jump to the last page
   void skipPage() {
-    int page = currentPageIndex.value = 2;
-    pageController.jumpToPage(page);
+    Get.offAll(const LoginScreen());
+    //int page = currentPageIndex.value = 2;
+    // pageController.jumpToPage(page);
   }
 }

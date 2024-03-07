@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/features/authentication/screens/password_configuration/forget_passwprd.dart';
+import 'package:flutter_e_commerce/features/authentication/screens/signup/signup.dart';
+import 'package:flutter_e_commerce/navigation_menu/nevigation_menu.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/sizes.dart';
@@ -21,6 +26,7 @@ class SdpLoginForm extends StatelessWidget {
                   prefixIcon: Icon(Iconsax.direct_right),
                   labelText: SdpTexts.email),
             ),
+            const SizedBox(height: SdpSizes.spaceBtwItems),
             // Password
             TextFormField(
               decoration: const InputDecoration(
@@ -44,26 +50,27 @@ class SdpLoginForm extends StatelessWidget {
 
                 /// Forget Password
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const SdpForgetPassword()),
                     child: const Text(SdpTexts.forgetPassword)),
               ],
             ),
-            const SizedBox(height: SdpSizes.spaceBtwSections),
+            const SizedBox(height: SdpSizes.spaceBtwSections * 0.5),
 
             //Sign In Button
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () {}, child: const Text(SdpTexts.signIn))),
+                    onPressed: () => Get.to(() => const SdpNavigationMenu()),
+                    child: const Text(SdpTexts.signIn))),
             const SizedBox(height: SdpSizes.spaceBtwItems),
 
             /// Create Account Button
             SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const SignupScreen()),
                     child: const Text(SdpTexts.createAccount))),
-            const SizedBox(height: SdpSizes.spaceBtwSections),
+            // const SizedBox(height: SdpSizes.spaceBtwSections),
           ],
         ),
       ),
