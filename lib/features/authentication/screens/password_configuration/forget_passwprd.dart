@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/constants/text_strings.dart';

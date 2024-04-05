@@ -7,7 +7,6 @@ import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/constants/text_strings.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SdpVerifyEmailScreen extends StatelessWidget {
   const SdpVerifyEmailScreen({super.key});
@@ -18,7 +17,7 @@ class SdpVerifyEmailScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () => Get.offAll(() => LoginScreen()),
+              onPressed: () => Get.offAll(() => const LoginScreen()),
               icon: const Icon(CupertinoIcons.clear))
         ],
       ),

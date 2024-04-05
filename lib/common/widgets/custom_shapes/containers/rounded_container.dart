@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 
 import '../../../../utils/constants/colors.dart';
 
-class SdpCircularContainer extends StatelessWidget {
-  const SdpCircularContainer({
+class SdpRoundedContainer extends StatelessWidget {
+  const SdpRoundedContainer({
     super.key,
-    this.width = 400,
-    this.height = 400,
-    this.radius = 400,
-    this.padding = 0,
+    this.width,
+    this.height,
+    this.radius = SdpSizes.cardRadiusLg,
+    this.padding,
+    this.showBorder = false,
+    this.borderColor = SdpColors.white,
     this.child,
     this.backgroundColor = SdpColors.white,
     this.margin,
@@ -17,8 +20,10 @@ class SdpCircularContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final double radius;
-  final EdgeInsets? margin;
-  final double padding;
+  final bool showBorder;
+  final Color borderColor;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
   final Widget? child;
   final Color backgroundColor;
 
@@ -28,10 +33,11 @@ class SdpCircularContainer extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
-      padding: EdgeInsets.all(padding),
+      padding: padding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
         color: backgroundColor,
+        border: showBorder ? Border.all(color: borderColor) : null,
       ),
       child: child,
     );

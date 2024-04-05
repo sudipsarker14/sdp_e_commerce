@@ -8,7 +8,7 @@ class SdpAppbar extends StatelessWidget implements PreferredSizeWidget {
   const SdpAppbar(
       {super.key,
       this.title,
-      this.showBackArrow = true,
+      this.showBackArrow = false,
       this.leadingIcon,
       this.actions,
       this.leadingOnPressed});

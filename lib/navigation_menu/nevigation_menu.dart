@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
-
-import 'Navigation_Controller.dart';
+import 'navigation_Controller.dart';
 
 class SdpNavigationMenu extends StatelessWidget {
   const SdpNavigationMenu({super.key});

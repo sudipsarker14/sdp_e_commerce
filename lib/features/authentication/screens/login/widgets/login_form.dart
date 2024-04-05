@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce/features/authentication/screens/password_conf
 import 'package:flutter_e_commerce/features/authentication/screens/signup/signup.dart';
 import 'package:flutter_e_commerce/navigation_menu/nevigation_menu.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/sizes.dart';

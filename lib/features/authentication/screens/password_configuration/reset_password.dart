@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/constants/text_strings.dart';
