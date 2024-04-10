@@ -4,9 +4,9 @@ import 'package:flutter_e_commerce/features/shop/controllers/home_controller.dar
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/widgets/custom_shapes/containers/circular_container.dart';
-import '../../../../common/widgets/images/sdp_rounded_image.dart';
-import '../../../../utils/constants/sizes.dart';
+import '../../../../../common/widgets/custom_shapes/containers/circular_container.dart';
+import '../../../../../common/widgets/images/sdp_rounded_image.dart';
+import '../../../../../utils/constants/sizes.dart';
 
 class SdpPromoSlider extends StatelessWidget {
   const SdpPromoSlider({

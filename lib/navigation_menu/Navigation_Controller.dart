@@ -1,21 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/features/personalization/screens/settings/settings.dart';
+import 'package:flutter_e_commerce/features/shop/screens/store/store.dart';
+import 'package:flutter_e_commerce/features/shop/screens/wishlist/wishlist.dart';
 import 'package:get/get.dart';
 
-import '../features/shop/screens/home.dart';
+import '../features/shop/screens/home/home.dart';
 
 class SdpNavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
     const SdpHomeScreen(),
-    Container(
-      color: Colors.purple,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.pink,
-    ),
+    const SdpStoreScreen(),
+    const SdpWishListScreen(),
+    const SdpSettingsScreen(),
   ];
 }

@@ -10,7 +10,7 @@ class SdpVerticalImageText extends StatelessWidget {
     required this.image,
     required this.title,
     this.textColor = SdpColors.white,
-    this.backgroundColor = SdpColors.white,
+    this.backgroundColor,
     this.onTap,
   });
   final String image, title;
@@ -48,7 +48,7 @@ class SdpVerticalImageText extends StatelessWidget {
             /// Text
             const SizedBox(height: SdpSizes.spaceBtwItems / 2),
             SizedBox(
-              width: 55,
+              width: 56,
               child: Text(
                 title,
                 style: Theme.of(context)

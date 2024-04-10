@@ -16,7 +16,6 @@ class SdpPrimaryHeaderContainer extends StatelessWidget {
     return SdpCurvedEdgeWidget(
       child: Container(
         color: SdpColors.primary,
-        padding: const EdgeInsets.only(bottom: 0),
         child: Stack(
           children: [
             Positioned(

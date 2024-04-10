@@ -19,5 +19,6 @@ class TCloudHelperFunctions {
     if (!snapshot.hasData || snapshot.data == null) {
       return const Center(child: Text('No Data Found!'));
     }
+    return null;
   }
 }

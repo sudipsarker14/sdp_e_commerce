@@ -5,6 +5,7 @@ import 'package:flutter_e_commerce/common/widgets/icons/sdp_circular_icon.dart';
 import 'package:flutter_e_commerce/common/widgets/images/sdp_rounded_image.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/product_price_text.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/product_title_text.dart';
+import 'package:flutter_e_commerce/common/widgets/texts/title_with_verified_icon.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
@@ -72,55 +73,48 @@ class SdpProductCardVertical extends StatelessWidget {
             const SizedBox(height: SdpSizes.spaceBtwItems / 2),
 
             /// Details
-            Padding(
-              padding: const EdgeInsets.only(left: SdpSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: SdpSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SdpProductTitletext(
+                  SdpProductTitletext(
                       title: 'Green Nike Air Shoes', smallSize: true),
-                  const SizedBox(height: SdpSizes.spaceBtwItems / 2),
-                  Row(
-                    children: [
-                      Text('Nike',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.labelMedium),
-                      const SizedBox(width: SdpSizes.xs),
-                      const Icon(Iconsax.verify,
-                          color: SdpColors.primary, size: SdpSizes.iconXs),
-                    ],
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ///Price
-                        const SdpProductPriceText(
-                          price: '35.0',
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: SdpColors.dark,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(SdpSizes.cardRadiusMd),
-                              bottomRight:
-                                  Radius.circular(SdpSizes.productImageSize),
-                            ),
-                          ),
-                          child: const SizedBox(
-                            width: SdpSizes.iconLg * 1.2,
-                            height: SdpSizes.iconLg * 1.2,
-                            child: Center(
-                                child: Icon(
-                              Iconsax.add,
-                              color: SdpColors.white,
-                            )),
-                          ),
-                        )
-                      ])
+                  SizedBox(height: SdpSizes.spaceBtwItems / 2),
+                  SdpBrandTitleWithVerifiedIcon(title: 'Nike'),
                 ],
               ),
-            )
+            ),
+            // Todo: Add Spacer() hare to keep the height of each Box soe in case 1 or 2 Lines of Headings
+            const Spacer(),
+
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              ///Price
+              const Padding(
+                padding: EdgeInsets.only(left: SdpSizes.sm),
+                child: SdpProductPriceText(
+                  price: '35.0',
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: SdpColors.dark,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(SdpSizes.cardRadiusMd),
+                    bottomRight: Radius.circular(SdpSizes.productImageSize),
+                  ),
+                ),
+                child: const SizedBox(
+                  width: SdpSizes.iconLg * 1.2,
+                  height: SdpSizes.iconLg * 1.2,
+                  child: Center(
+                      child: Icon(
+                    Iconsax.add,
+                    color: SdpColors.white,
+                  )),
+                ),
+              )
+            ])
           ],
         ),
       ),

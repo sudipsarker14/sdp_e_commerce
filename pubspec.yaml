@@ -53,8 +53,8 @@ dependencies:
   # State Management
   get: ^4.5.5
   get_storage: ^2.1.1
-  carousel_slider: ^4.2.1
 
+  connectivity_plus: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -85,6 +85,9 @@ flutter:
     - assets/images/banners/
     - assets/icons/categories/
     - assets/images/products/
+    - assets/images/content/
+    - assets/images/animations/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:flutter_e_commerce/features/shop/screens/widgets/home_appbar.dart';
-import 'package:flutter_e_commerce/features/shop/screens/widgets/home_categories.dart';
-import 'package:flutter_e_commerce/features/shop/screens/widgets/promo_slider.dart';
+import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:flutter_e_commerce/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
-import '../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
-import '../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../common/widgets/texts/section_heading.dart';
+import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
+import '../../../../common/widgets/texts/section_heading.dart';
 
 class SdpHomeScreen extends StatelessWidget {
   const SdpHomeScreen({super.key});
@@ -46,7 +46,8 @@ class SdpHomeScreen extends StatelessWidget {
                     SizedBox(height: SdpSizes.spaceBtwItems),
 
                     /// Categories
-                    SdpHomeCategories()
+                    SdpHomeCategories(),
+                    SizedBox(height: SdpSizes.spaceBtwSections),
                   ],
                 ),
               ),
@@ -65,6 +66,9 @@ class SdpHomeScreen extends StatelessWidget {
                 SdpImages.promoBanner2,
                 SdpImages.promoBanner3
               ]),
+
+              /// Heading
+              SdpSectionHeading(title: 'Popular Products', onPressed: () {}),
               const SizedBox(height: SdpSizes.spaceBtwItems),
 
               /// Popular Products
