@@ -4,12 +4,12 @@ import 'package:flutter_e_commerce/utils/constants/colors.dart';
 class SdpSettingsMenuTile extends StatelessWidget {
   const SdpSettingsMenuTile(
       {super.key,
-      required this.icon,
       required this.title,
       required this.subTitle,
       this.trailing,
-      this.onTap});
-  final IconData icon;
+      this.onTap,
+      this.icon});
+  final IconData? icon;
   final String title, subTitle;
   final Widget? trailing;
   final VoidCallback? onTap;

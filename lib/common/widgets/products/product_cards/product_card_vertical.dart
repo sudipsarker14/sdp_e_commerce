@@ -6,10 +6,12 @@ import 'package:flutter_e_commerce/common/widgets/images/sdp_rounded_image.dart'
 import 'package:flutter_e_commerce/common/widgets/texts/product_price_text.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/product_title_text.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/title_with_verified_icon.dart';
+import 'package:flutter_e_commerce/features/shop/screens/product_details/product_detail.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SdpProductCardVertical extends StatelessWidget {
@@ -21,7 +23,7 @@ class SdpProductCardVertical extends StatelessWidget {
 
     /// Container with side paddings, color, edges, radius and shadow
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => const SdpProductDetailScreen()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),

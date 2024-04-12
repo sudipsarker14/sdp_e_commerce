@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:flutter_e_commerce/common/widgets/images/sdp_circular_image.dart';
 import 'package:flutter_e_commerce/common/widgets/list_tile/settings_menu_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/profile/profile_screen.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
-import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -52,12 +51,12 @@ class SdpSettingsScreen extends StatelessWidget {
                   const SizedBox(height: SdpSizes.spaceBtwItems),
 
                   SdpSettingsMenuTile(
-                      icon: Iconsax.safe_home,
+                      icon: FontAwesomeIcons.house,
                       title: 'My Addresses',
                       subTitle: 'Set shopping delivery address',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.shopping_cart,
+                      icon: FontAwesomeIcons.cartShopping,
                       title: 'My Cart',
                       subTitle: 'Add, remove products and move to checkout',
                       onTap: () {}),
@@ -67,22 +66,22 @@ class SdpSettingsScreen extends StatelessWidget {
                       subTitle: 'In-progress and Completed Orders',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.bank,
+                      icon: FontAwesomeIcons.buildingColumns,
                       title: 'Bank Account',
                       subTitle: 'Withdraw balance to registered bank account',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.discount_shape,
+                      icon: Icons.discount,
                       title: 'My Coupons',
                       subTitle: 'List of all the discounted coupons',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.notification,
+                      icon: Icons.notifications,
                       title: 'Notifications',
                       subTitle: 'Set any kind of notification message',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.security_card,
+                      icon: Icons.privacy_tip,
                       title: 'Account Privacy',
                       subTitle: 'Manage data usage and connected accounts',
                       onTap: () {}),
@@ -99,7 +98,7 @@ class SdpSettingsScreen extends StatelessWidget {
                       subTitle: 'Upload Data to your Cloud Firebase',
                       onTap: () {}),
                   SdpSettingsMenuTile(
-                      icon: Iconsax.location,
+                      icon: FontAwesomeIcons.locationCrosshairs,
                       title: 'Geolocation',
                       subTitle: 'Set recommendation based on location',
                       trailing: Switch(value: true, onChanged: (value) {}),
@@ -121,8 +120,8 @@ class SdpSettingsScreen extends StatelessWidget {
                   const SizedBox(height: SdpSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child:
-                        OutlinedButton(onPressed: () {}, child: Text('Logout')),
+                    child: OutlinedButton(
+                        onPressed: () {}, child: const Text('Logout')),
                   ),
                   const SizedBox(height: SdpSizes.spaceBtwSections * 2.5),
                 ],

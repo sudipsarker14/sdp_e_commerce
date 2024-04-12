@@ -3,7 +3,7 @@ import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'navigation_Controller.dart';
+import 'navigation_controller.dart';
 
 class SdpNavigationMenu extends StatelessWidget {
   const SdpNavigationMenu({super.key});
