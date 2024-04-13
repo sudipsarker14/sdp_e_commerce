@@ -57,6 +57,7 @@ dependencies:
 
   connectivity_plus: any
   readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
   
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,7 @@ flutter:
     - assets/images/products/
     - assets/images/content/
     - assets/images/animations/
+    - assets/images/reviews/
 
   #   - images/a_dot_ham.jpeg
 

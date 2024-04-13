@@ -5,7 +5,9 @@ import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/rating_share_widget.dart';
+import 'package:flutter_e_commerce/features/shop/screens/product_rating/product_rating.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
+import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -73,7 +75,8 @@ class SdpProductDetailScreen extends StatelessWidget {
                       const SdpSectionHeading(
                           title: 'Reviews (199)', showActionButton: true),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              Get.to(() => const SdpProductRating()),
                           icon: (const Icon(
                             FontAwesomeIcons.arrowRight,
                             size: 18,
