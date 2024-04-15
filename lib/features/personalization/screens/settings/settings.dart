@@ -4,6 +4,7 @@ import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/prima
 import 'package:flutter_e_commerce/common/widgets/list_tile/settings_menu_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/profile/profile_screen.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
@@ -54,7 +55,8 @@ class SdpSettingsScreen extends StatelessWidget {
                       icon: FontAwesomeIcons.house,
                       title: 'My Addresses',
                       subTitle: 'Set shopping delivery address',
-                      onTap: () {}),
+                      onTap: () =>
+                          Get.to(() => const SdpAddNewAddressScreen())),
                   SdpSettingsMenuTile(
                       icon: FontAwesomeIcons.cartShopping,
                       title: 'My Cart',
