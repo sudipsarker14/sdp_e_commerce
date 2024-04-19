@@ -40,7 +40,6 @@ dependencies:
   intl: ^0.18.1
   logger: ^2.0.1
   url_launcher: ^6.1.12
-  flutter_native_splash: ^2.3.2
   smooth_page_indicator: ^1.1.0
   carousel_slider: ^4.2.1
   font_awesome_flutter: ^10.7.0

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/features/shop/screens/cart/cart.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
@@ -18,8 +21,8 @@ class SdpCartCounterIcon extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-            onPressed: onPressed,
-            icon: Icon(Iconsax.shopping_bag, color: iconColor)),
+            onPressed: () => Get.to(() => const SdpCartScreen()),
+            icon: Icon(FontAwesomeIcons.bagShopping, color: iconColor)),
         Positioned(
             right: 0,
             child: Container(
