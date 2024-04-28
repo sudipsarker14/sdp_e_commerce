@@ -1,3 +1,4 @@
+/*
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -51,3 +52,4 @@ class NetworkManager extends GetxController {
     _connectivitySubscription.cancel();
   }
 }
+*/

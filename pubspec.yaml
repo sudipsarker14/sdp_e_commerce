@@ -91,6 +91,7 @@ flutter:
     - assets/images/content/
     - assets/images/animations/
     - assets/images/reviews/
+    - assets/icons/payment_methods/
 
   #   - images/a_dot_ham.jpeg
 

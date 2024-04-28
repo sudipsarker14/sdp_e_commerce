@@ -6,6 +6,7 @@ import 'package:flutter_e_commerce/common/widgets/list_tile/user_profile_tile.da
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/profile/profile_screen.dart';
+import 'package:flutter_e_commerce/features/shop/screens/orders/orders.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -66,7 +67,7 @@ class SdpSettingsScreen extends StatelessWidget {
                       icon: Iconsax.bag_tick,
                       title: 'My Orders',
                       subTitle: 'In-progress and Completed Orders',
-                      onTap: () {}),
+                      onTap: () => Get.to(() => const SdpOrdersScreen())),
                   SdpSettingsMenuTile(
                       icon: FontAwesomeIcons.buildingColumns,
                       title: 'Bank Account',
