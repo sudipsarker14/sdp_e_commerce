@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:flutter_e_commerce/features/shop/screens/all_products/all_products.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
+import 'package:get/get.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
@@ -68,7 +70,9 @@ class SdpHomeScreen extends StatelessWidget {
               ]),
 
               /// Heading
-              SdpSectionHeading(title: 'Popular Products', onPressed: () {}),
+              SdpSectionHeading(
+                  title: 'Popular Products',
+                  onPressed: () => Get.to(() => const SdpAllProducts())),
               const SizedBox(height: SdpSizes.spaceBtwItems),
 
               /// Popular Products

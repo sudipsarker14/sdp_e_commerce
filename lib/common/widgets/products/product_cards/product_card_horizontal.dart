@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_e_commerce/common/styles/shadows.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:flutter_e_commerce/common/widgets/icons/sdp_circular_icon.dart';
 import 'package:flutter_e_commerce/common/widgets/images/sdp_rounded_image.dart';
@@ -53,7 +50,7 @@ class SdpProductCardHorizontal extends StatelessWidget {
                   child: SdpRoundedContainer(
                     radius: SdpSizes.sm,
                     backgroundColor: SdpColors.secondary.withOpacity(0.8),
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: SdpSizes.sm, vertical: SdpSizes.xs),
                     child: Text('25%',
                         style: Theme.of(context)
@@ -77,7 +74,8 @@ class SdpProductCardHorizontal extends StatelessWidget {
           SizedBox(
             width: 172,
             child: Padding(
-              padding: EdgeInsets.only(top: SdpSizes.sm, left: SdpSizes.sm),
+              padding:
+                  const EdgeInsets.only(top: SdpSizes.sm, left: SdpSizes.sm),
               child: Column(
                 children: [
                   const Column(
@@ -96,7 +94,7 @@ class SdpProductCardHorizontal extends StatelessWidget {
                     children: [
                       /// Pricing
                       const Flexible(
-                          child: const SdpProductPriceText(price: '256.0')),
+                          child: SdpProductPriceText(price: '256.0')),
 
                       /// Add to Cart Button
                       Container(

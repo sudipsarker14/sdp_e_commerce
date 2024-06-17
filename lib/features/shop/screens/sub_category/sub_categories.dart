@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:flutter_e_commerce/common/widgets/images/sdp_rounded_image.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_horizontal.dart';
