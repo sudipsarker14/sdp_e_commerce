@@ -6,10 +6,12 @@ import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/searc
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/shop/screens/brands/all_brands.dart';
 import 'package:flutter_e_commerce/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
+import 'package:get/get.dart';
 
 class SdpStoreScreen extends StatelessWidget {
   const SdpStoreScreen({super.key});
@@ -56,7 +58,9 @@ class SdpStoreScreen extends StatelessWidget {
 
                         /// Featured Brands
                         SdpSectionHeading(
-                            title: 'Featured Brands', onPressed: () {}),
+                            title: 'Featured Brands',
+                            onPressed: () =>
+                                Get.to(() => const SdpAllBrandsScreen())),
                         const SizedBox(height: SdpSizes.spaceBtwItems / 1.5),
 
                         /// Brands Grid
