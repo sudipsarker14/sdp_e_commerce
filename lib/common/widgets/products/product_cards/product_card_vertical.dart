@@ -98,6 +98,8 @@ class SdpProductCardVertical extends StatelessWidget {
                   price: '35.0',
                 ),
               ),
+
+              /// Add to Cart Button
               Container(
                 decoration: const BoxDecoration(
                   color: SdpColors.dark,
