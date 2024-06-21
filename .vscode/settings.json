@@ -1,4 +1,6 @@
 {
     "cmake.sourceDirectory": "C:/Users/sudip/OneDrive/Documents/FlutterProjects/flutter_e_commerce/linux",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
