@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:flutter_e_commerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/signup/widgets/terms_and_condition.dart';
 import 'package:flutter_e_commerce/utils/validators/validation.dart';
 import 'package:get/get.dart';
