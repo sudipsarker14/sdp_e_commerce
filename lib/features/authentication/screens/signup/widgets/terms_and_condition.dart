@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/features/authentication/controllers/signup/signup_controller.dart';
+import 'package:get/get.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -10,13 +12,18 @@ class SdpTermsAndCondititionCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = SdpSignupController.instance;
     final dark = SdpHelperFunctions.isDarkMode(context);
     return Row(
       children: [
         SizedBox(
-            width: 24,
-            height: 24,
-            child: Checkbox(value: true, onChanged: (value) {})),
+          width: 24,
+          height: 24,
+          child: Obx(() => Checkbox(
+              value: controller.privacyPolicy.value,
+              onChanged: (value) => controller.privacyPolicy.value =
+                  !controller.privacyPolicy.value)),
+        ),
         const SizedBox(height: SdpSizes.spaceBtwItems),
         Text.rich(
           TextSpan(children: [

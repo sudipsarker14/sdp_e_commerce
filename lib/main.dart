@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce/data/repositories.authentication/authentication_repository.dart';
+import 'package:flutter_e_commerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';

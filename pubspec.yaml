@@ -54,11 +54,14 @@ dependencies:
   get: ^4.5.5
   get_storage: ^2.1.1
 
-  connectivity_plus: any
+  connectivity_plus: ^6.0.5
   readmore: ^3.0.0
   flutter_rating_bar: ^4.0.1
   firebase_core: ^3.1.0
   flutter_native_splash: ^2.4.0
+  lottie: ^3.1.2
+  firebase_auth: ^5.1.4
+  cloud_firestore: ^5.2.1
   
 dev_dependencies:
   flutter_test:
