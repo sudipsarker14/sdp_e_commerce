@@ -80,6 +80,8 @@ class SdpUserModel {
         phoneNumber: data['PhoneNumber'] ?? '',
         profilePicture: data['ProfilePicture'] ?? '',
       );
+    } else {
+      return SdpUserModel.empty();
     }
   }
 }
