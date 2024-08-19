@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_e_commerce/utils/popups/loaders.dart';
 import 'package:get/get.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 
 /// Manages the network connectivity status and provides methods to check and handle connectivity changes.

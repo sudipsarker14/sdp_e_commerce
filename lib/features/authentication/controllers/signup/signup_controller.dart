@@ -35,11 +35,18 @@ class SdpSignupController extends GetxController {
 
       // Check Internet Connectivity
       final isConnected = await SdpNetworkManager.instance.isConnected();
-      if (!isConnected) return;
+      if (!isConnected) {
+        // Remove Loader
+        SdpFullScreenLoader.stopLoading();
+        return;
+      }
 
       // Form Validation
-      if (!signupFormKey.currentState!.validate()) return;
-
+      if (!signupFormKey.currentState!.validate()) {
+         // Remove Loader
+        SdpFullScreenLoader.stopLoading();
+        return;
+      }
       // Privacy Policy Check
       if (!privacyPolicy.value) {
         SdpLoaders.warningSnackBar(
@@ -79,12 +86,11 @@ class SdpSignupController extends GetxController {
       // Move to verify Email Screen
       Get.to(() => const SdpVerifyEmailScreen());
     } catch (e) {
-
       // Remove Loader
       SdpFullScreenLoader.stopLoading();
 
       // Show some Generic Error to the user
       SdpLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    } 
+    }
   }
 }

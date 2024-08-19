@@ -21,9 +21,9 @@ class SdpUserRepository extends GetxController {
       SdpUserModel user) async {
     try {
       await _db.collection("Users").doc(user.id).set(user.toJson());
-    } on FirebaseAuthException catch (e) {
+    } /*on FirebaseAuthException catch (e) {
       throw SdpFirebaseAuthException(e.code).message;
-    } on FirebaseException catch (e) {
+    } */on FirebaseException catch (e) {
       throw SdpFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const SdpFormatException();

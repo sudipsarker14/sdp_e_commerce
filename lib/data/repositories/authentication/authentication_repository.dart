@@ -22,10 +22,12 @@ class SdpAuthenticationRepository extends GetxController {
 
   @override
   void onReady() {
+    // Remove the native splash screen
     FlutterNativeSplash.remove();
+    // Redirect to the appropriate screen
     screenRedirect();
   }
-
+/*
   /// Function to Show Relevent Screen
   screenRedirect() async {
     // Local Storage
@@ -33,8 +35,12 @@ class SdpAuthenticationRepository extends GetxController {
       print('========================== Get Storage ================');
       print(deviceStorage.read('IsFirstTime'));
     }
-
+*/
+/// Function to Show Relevent Screen
+  screenRedirect() async {
+    // Local Storage
     deviceStorage.writeIfNull('IsFirstTime', true);
+    // Check if it's the first time launching the app
     deviceStorage.read('IsFirstTime') != true
         ? Get.offAll(() =>
             const LoginScreen()) // Redirect to Login Screen if not the first time
