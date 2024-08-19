@@ -84,7 +84,7 @@ class SdpSignupController extends GetxController {
           message: 'Your account has been created! Verify email to continue');
 
       // Move to verify Email Screen
-      Get.to(() => const SdpVerifyEmailScreen());
+      Get.to(() => SdpVerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       // Remove Loader
       SdpFullScreenLoader.stopLoading();

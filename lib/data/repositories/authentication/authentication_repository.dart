@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/login/login.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:flutter_e_commerce/features/authentication/screens/signup/verify_email.dart';
+import 'package:flutter_e_commerce/navigation_menu/nevigation_menu.dart';
 import 'package:flutter_e_commerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:flutter_e_commerce/utils/exceptions/firebase_exceptions.dart';
 import 'package:flutter_e_commerce/utils/exceptions/format_exceptions.dart';
@@ -27,6 +28,7 @@ class SdpAuthenticationRepository extends GetxController {
     // Redirect to the appropriate screen
     screenRedirect();
   }
+
 /*
   /// Function to Show Relevent Screen
   screenRedirect() async {
@@ -36,16 +38,25 @@ class SdpAuthenticationRepository extends GetxController {
       print(deviceStorage.read('IsFirstTime'));
     }
 */
-/// Function to Show Relevent Screen
+  /// Function to Show Relevent Screen
   screenRedirect() async {
-    // Local Storage
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    // Check if it's the first time launching the app
-    deviceStorage.read('IsFirstTime') != true
-        ? Get.offAll(() =>
-            const LoginScreen()) // Redirect to Login Screen if not the first time
-        : Get.offAll(
-            const SdpOnBoardingScreen()); // Redirect to OnBoarding Screen if it's the first time
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(() => const SdpNavigationMenu());
+      } else {
+        Get.offAll(() => SdpVerifyEmailScreen(email: _auth.currentUser?.email));
+      }
+    } else {
+      // Local Storage
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      // Check if it's the first time launching the app
+      deviceStorage.read('IsFirstTime') != true
+          ? Get.offAll(() =>
+              const LoginScreen()) // Redirect to Login Screen if not the first time
+          : Get.offAll(
+              const SdpOnBoardingScreen()); // Redirect to OnBoarding Screen if it's the first time
+    }
   }
 
   /* -------------------------Email & Password sign-in--------------------------*/
@@ -73,6 +84,21 @@ class SdpAuthenticationRepository extends GetxController {
   }
 
   // [Email Verification] - Mail Verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
   // [Re Authentication] - Re Authenticate User
 
@@ -87,6 +113,23 @@ class SdpAuthenticationRepository extends GetxController {
   /* ------------------------ / end federated identity & social sign-in ----------------*/
 
   // [LogoutUser] - Valid for any authenticaton
+
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
   // [DeleteUser] - Remove user Auth and firestore Account.
 }

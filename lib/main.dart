@@ -10,6 +10,7 @@ import 'firebase_options.dart';
 
 /// Entry point of Flutter App
 Future<void> main() async {
+  
   /// Widgets Binding
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +21,11 @@ Future<void> main() async {
   /// Await Splash until other items Load
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  ///Initialize Firebase & Authentication
+  ///Initialize Firebase & Authentication Repository
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((FirebaseApp value) => Get.put(SdpAuthenticationRepository()));
-
+  
+  /// Load all the Material Design / Themes / Localization / Bindings
   runApp(const App());
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/styles/spacing_styles.dart';
+import 'package:lottie/lottie.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/constants/text_strings.dart';
-import '../../../utils/helpers/helper_functions.dart';
 
 class SdpSuccessScreenOne extends StatelessWidget {
   const SdpSuccessScreenOne(
@@ -19,14 +19,13 @@ class SdpSuccessScreenOne extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: SdpSpacingStyle.paddingWithAppBarHeight,
+          padding: SdpSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
               //Image
-              Image(
-                image: AssetImage(image),
-                width: SdpHelperFunctions.screenWidth() * 0.6,
-              ),
+             
+              Lottie.asset(image, width: MediaQuery.of(context).size.width * 0.6),
+              
               const SizedBox(height: SdpSizes.spaceBtwSections),
 
               //Title & SubTitle

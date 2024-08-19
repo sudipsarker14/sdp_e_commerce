@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_e_commerce/features/personalization/models/user_model.dart';
-import 'package:flutter_e_commerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:flutter_e_commerce/utils/exceptions/firebase_exceptions.dart';
 import 'package:flutter_e_commerce/utils/exceptions/format_exceptions.dart';
 import 'package:flutter_e_commerce/utils/exceptions/platform_exceptions.dart';
