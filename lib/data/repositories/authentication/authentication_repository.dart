@@ -61,7 +61,25 @@ class SdpAuthenticationRepository extends GetxController {
 
   /* -------------------------Email & Password sign-in--------------------------*/
 
-  // [Email Authentication] - SignIn
+  // [Email Authentication] - Log In
+
+   Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
   // [Email Authentication] - Register
 

@@ -15,6 +15,7 @@ class SdpVerifyEmailController extends GetxController {
   @override
   void onInit() {
     sendEmailVerification();
+    setTimerForAutoRedirect();
     super.onInit();
   }
 
@@ -53,12 +54,12 @@ class SdpVerifyEmailController extends GetxController {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null && currentUser.emailVerified) {
       Get.off(() => SdpSuccessScreenOne(
-              image: SdpImages.successfullyRegisterAnimation,
-              tittle: SdpTexts.yourAccountCreatedTitle,
-              subTitle: SdpTexts.yourAccountCreatedSubTitle,
-              onPressed: () =>
-                  SdpAuthenticationRepository.instance.screenRedirect(),
-            ));
+            image: SdpImages.successfullyRegisterAnimation,
+            tittle: SdpTexts.yourAccountCreatedTitle,
+            subTitle: SdpTexts.yourAccountCreatedSubTitle,
+            onPressed: () =>
+                SdpAuthenticationRepository.instance.screenRedirect(),
+          ));
     }
   }
 }
