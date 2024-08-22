@@ -11,6 +11,7 @@ import 'package:flutter_e_commerce/utils/exceptions/platform_exceptions.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SdpAuthenticationRepository extends GetxController {
   static SdpAuthenticationRepository get instance => Get.find();
@@ -63,7 +64,7 @@ class SdpAuthenticationRepository extends GetxController {
 
   // [Email Authentication] - Log In
 
-   Future<UserCredential> loginWithEmailAndPassword(
+  Future<UserCredential> loginWithEmailAndPassword(
       String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
@@ -126,6 +127,34 @@ class SdpAuthenticationRepository extends GetxController {
 
   // [Google Authentication] - Google
 
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      // Create a new credential
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
   // [Fasebook Authentication] - Facebook
 
   /* ------------------------ / end federated identity & social sign-in ----------------*/
@@ -134,6 +163,7 @@ class SdpAuthenticationRepository extends GetxController {
 
   Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {

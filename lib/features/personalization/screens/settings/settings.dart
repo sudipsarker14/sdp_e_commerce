@@ -4,6 +4,7 @@ import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/prima
 import 'package:flutter_e_commerce/common/widgets/list_tile/settings_menu_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/profile/profile_screen.dart';
 import 'package:flutter_e_commerce/features/shop/screens/orders/orders.dart';
@@ -18,6 +19,7 @@ class SdpSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SdpAuthenticationRepository());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -124,7 +126,8 @@ class SdpSettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text('Logout')),
+                        onPressed: () => controller.logout(),
+                        child: const Text('Logout')),
                   ),
                   const SizedBox(height: SdpSizes.spaceBtwSections * 2.5),
                 ],

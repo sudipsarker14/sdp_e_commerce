@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/features/authentication/controllers/login/login_controller.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/password_configuration/forget_passwprd.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/signup/signup.dart';
-import 'package:flutter_e_commerce/navigation_menu/nevigation_menu.dart';
 import 'package:flutter_e_commerce/utils/validators/validation.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
