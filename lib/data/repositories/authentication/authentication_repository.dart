@@ -122,6 +122,22 @@ class SdpAuthenticationRepository extends GetxController {
   // [Re Authentication] - Re Authenticate User
 
   // [Email Authentication] - Forget Password
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
 
   /* -------------------------Federated identity & social sign-in ------------------*/
 

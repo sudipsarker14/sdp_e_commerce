@@ -19,7 +19,7 @@ class SdpHomeCategories extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
             return SdpVerticalImageText(
-              image: SdpImages.shoeIcon,
+              image: SdpImages.clothIcon,
               title: 'Shoes',
               onTap: () => Get.to(() => const SdpSubCategoryScreen()),
             );

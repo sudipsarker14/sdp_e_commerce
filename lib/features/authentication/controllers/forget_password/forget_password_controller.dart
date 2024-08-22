@@ -1,37 +1,25 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_e_commerce/data/repositories/authentication/authentication_repository.dart';
-import 'package:flutter_e_commerce/features/personalization/controllers/user_controller.dart';
+import 'package:flutter_e_commerce/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/helpers/network_manager.dart';
 import 'package:flutter_e_commerce/utils/popups/full_screen_loader.dart';
 import 'package:flutter_e_commerce/utils/popups/loaders.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-class SdpLogingController extends GetxController {
+class SdpForgetPasswordController extends GetxController {
+  static SdpForgetPasswordController get instance => Get.find();
+
   // Variables
-  final rememberMe = false.obs;
-  final hidePassword = true.obs;
-  final localStorage = GetStorage();
   final email = TextEditingController();
-  final password = TextEditingController();
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  final userController = Get.put(SdpUserController());
+  GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
 
-  @override
-  void onInit() {
-    email.text = localStorage.read('REMEMBER_ME_EMAIL');
-    password.text = localStorage.read('REMEMBER_ME_PASSWORD');
-    super.onInit();
-  }
-
-  // -- Email and Password SignIn
-
-  Future<void> emailAndPasswordSignIn() async {
+  // Send reset Password Email
+  sendPasswordResetEmail() async {
     try {
       // Start Loading
       SdpFullScreenLoader.openLoadingDialog(
-          "Loggin you in", SdpImages.docerAnimation);
+          "Processing your request...", SdpImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await SdpNetworkManager.instance.isConnected();
@@ -42,26 +30,27 @@ class SdpLogingController extends GetxController {
       }
 
       // Form Validation
-      if (!loginFormKey.currentState!.validate()) {
+      if (!forgetPasswordFormKey.currentState!.validate()) {
         // Remove Loader
         SdpFullScreenLoader.stopLoading();
         return;
       }
-      // Save Data if Remember Me is selected
-      if (rememberMe.value) {
-        localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-        localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
-      }
 
-      // Login user using Email & Password Authenticationentication
-      final userCredential = await SdpAuthenticationRepository.instance
-          .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+      // Send Email to Reset Password
+      await SdpAuthenticationRepository.instance
+          .sendPasswordResetEmail(email.text.trim());
 
       // Remove Loader
       SdpFullScreenLoader.stopLoading();
 
+      // Show Success Screen
+      SdpLoaders.successSnackBar(
+          title: 'Email Sent',
+          message: 'Email Link Sent to Reset your Password'.tr);
+
       // Redirect
-      SdpAuthenticationRepository.instance.screenRedirect();
+      Get.to(() => SdpResetPassword(email: email.text.trim()));
+    
     } catch (e) {
       // Remove Loader
       SdpFullScreenLoader.stopLoading();
@@ -71,12 +60,11 @@ class SdpLogingController extends GetxController {
     }
   }
 
-  // Google SignIn Authentication
-  Future<void> googleSignIn() async {
+  resendPasswordresetEmail(String email) async {
     try {
       // Start Loading
       SdpFullScreenLoader.openLoadingDialog(
-          "Loggin you in", SdpImages.docerAnimation);
+          "Processing your request...", SdpImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await SdpNetworkManager.instance.isConnected();
@@ -86,20 +74,20 @@ class SdpLogingController extends GetxController {
         return;
       }
 
-      // Google Authentication
-      final userCredentials =
-          await SdpAuthenticationRepository.instance.signInWithGoogle();
-
-      // Save User Record
-      await userController.saveUserRecord(userCredentials);
+      // Send Email to Reset Password
+      await SdpAuthenticationRepository.instance
+          .sendPasswordResetEmail(email);
 
       // Remove Loader
       SdpFullScreenLoader.stopLoading();
 
-      // Redirect
-      SdpAuthenticationRepository.instance.screenRedirect();
+      // Show Success Screen
+      SdpLoaders.successSnackBar(
+          title: 'Email Sent',
+          message: 'Email Link Sent to Reset your Password'.tr);
+    
     } catch (e) {
-      // Remove Loader
+       // Remove Loader
       SdpFullScreenLoader.stopLoading();
 
       // Show some Generic Error to the user

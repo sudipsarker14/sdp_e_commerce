@@ -48,7 +48,7 @@ class SdpVerticalImageText extends StatelessWidget {
             /// Text
             const SizedBox(height: SdpSizes.spaceBtwItems / 2),
             SizedBox(
-              width: 56,
+              width: 55,
               child: Text(
                 title,
                 style: Theme.of(context)
