@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 /// Entry point of Flutter App
+
 Future<void> main() async {
   /// Widgets Binding
   final WidgetsBinding widgetsBinding =

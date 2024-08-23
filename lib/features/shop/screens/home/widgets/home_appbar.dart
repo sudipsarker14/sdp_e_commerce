@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/features/personalization/controllers/user_controller.dart';
+import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
+import 'package:get/get.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
@@ -12,6 +15,7 @@ class SdpHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SdpUserController());
     return SdpAppbar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,11 +25,18 @@ class SdpHomeAppBar extends StatelessWidget {
                   .textTheme
                   .labelMedium!
                   .apply(color: SdpColors.grey)),
-          Text(SdpTexts.homeAppbarSubTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .apply(color: SdpColors.white)),
+          Obx(() {
+            if (controller.profileLoading.value) {
+              // Display a shimmer loader while user profile is being loaded
+              return const SdpShimmerEffect(width: 80, height: 15);
+            } else {
+              return Text(controller.user.value.fullName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .apply(color: SdpColors.white));
+            }
+          }),
         ],
       ),
       actions: [

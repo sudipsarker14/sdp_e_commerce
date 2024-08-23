@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:flutter_e_commerce/common/widgets/images/sdp_circular_image.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/personalization/controllers/user_controller.dart';
+import 'package:flutter_e_commerce/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:flutter_e_commerce/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SdpProfileScreen extends StatelessWidget {
@@ -11,7 +15,11 @@ class SdpProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = SdpUserController.instance;
     return Scaffold(
+      appBar: const SdpAppbar(showBackArrow: true, title: Text('Profile')),
+      
+      // Body
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(SdpSizes.defaultSpace),
@@ -42,26 +50,31 @@ class SdpProfileScreen extends StatelessWidget {
             const SizedBox(height: SdpSizes.spaceBtwItems),
 
             SdpProfileMenu(
-                onPressed: () {}, tittle: 'Name', value: 'Sudip Sarker'),
+                onPressed: () => Get.to(() => const SdpChangeName()), tittle: 'Name', value: controller.user.value.fullName),
             SdpProfileMenu(
-                onPressed: () {}, tittle: 'Username', value: 'sudip1411'),
+                onPressed: () {}, tittle: 'Username', value: controller.user.value.username),
 
-            const SizedBox(height: SdpSizes.spaceBtwItems / 2),
+            const SizedBox(height: SdpSizes.spaceBtwItems),
             const Divider(),
             const SizedBox(height: SdpSizes.spaceBtwItems),
 
             /// Heading Personal Info
+            ///  /// Heading Profile Info
+            const SdpSectionHeading(
+                title: 'Personal Information', showActionButton: false),
+            const SizedBox(height: SdpSizes.spaceBtwItems),
+
             SdpProfileMenu(
                 onPressed: () {},
                 tittle: 'User Id',
                 icon: Iconsax.copy,
-                value: '4787454545'),
+                value: controller.user.value.id),
             SdpProfileMenu(
-                onPressed: () {}, tittle: 'E-mail', value: 'email@email.com'),
+                onPressed: () {}, tittle: 'E-mail', value: controller.user.value.email),
             SdpProfileMenu(
                 onPressed: () {},
                 tittle: 'Phone Number',
-                value: '+546566468745'),
+                value: controller.user.value.phoneNumber),
             SdpProfileMenu(onPressed: () {}, tittle: 'Sex', value: 'Male'),
             SdpProfileMenu(
                 onPressed: () {},
@@ -73,7 +86,7 @@ class SdpProfileScreen extends StatelessWidget {
 
             Center(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => controller.deleteAccountWarningPopup(),
                 child: const Text('Close Account',
                     style: TextStyle(color: Colors.red)),
               ),

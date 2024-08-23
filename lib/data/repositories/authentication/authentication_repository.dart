@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_e_commerce/data/repositories/user/user_repository.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/login/login.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:flutter_e_commerce/features/authentication/screens/signup/verify_email.dart';
@@ -20,8 +21,10 @@ class SdpAuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
-  /// Called from main.dart on app lunch
+  // Get Authenticater User Data
+  User? get authUser => _auth.currentUser;
 
+  /// Called from main.dart on app lunch
   @override
   void onReady() {
     // Remove the native splash screen
@@ -120,6 +123,27 @@ class SdpAuthenticationRepository extends GetxController {
   }
 
   // [Re Authentication] - Re Authenticate User
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      // Create a credential
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      // ReAuthenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
   // [Email Authentication] - Forget Password
   Future<void> sendPasswordResetEmail(String email) async {
@@ -137,7 +161,6 @@ class SdpAuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
-
 
   /* -------------------------Federated identity & social sign-in ------------------*/
 
@@ -196,4 +219,20 @@ class SdpAuthenticationRepository extends GetxController {
   }
 
   // [DeleteUser] - Remove user Auth and firestore Account.
+  Future<void> deleteAccount() async {
+    try {
+      await SdpUserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } on FirebaseAuthException catch (e) {
+      throw SdpFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw SdpFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const SdpFormatException();
+    } on PlatformException catch (e) {
+      throw SdpPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 }
