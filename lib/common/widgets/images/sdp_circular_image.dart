@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
+import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
 
 class SdpCircularImage extends StatelessWidget {
   const SdpCircularImage({
@@ -36,13 +38,22 @@ class SdpCircularImage extends StatelessWidget {
                 : SdpColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Center(
-        child: Image(
-          fit: fit,
-          image: isNetworkImage
-              ? NetworkImage(image)
-              : AssetImage(image) as ImageProvider,
-          color: overlayColor,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: isNetworkImage ? 
+           CachedNetworkImage(
+            fit: fit,
+            color: overlayColor,
+            imageUrl: image,
+            progressIndicatorBuilder: (context, url, downloadProgress) => const SdpShimmerEffect(width: 55, height: 55, redius: 55),
+            errorWidget: (context, url,error) => const Icon(Icons.error),
+           ) 
+           : Image( 
+            fit: fit,
+            image: AssetImage(image),
+            color: overlayColor,
+          ),
         ),
       ),
     );

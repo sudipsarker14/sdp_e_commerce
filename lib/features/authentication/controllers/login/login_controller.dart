@@ -54,7 +54,7 @@ class SdpLogingController extends GetxController {
       }
 
       // Login user using Email & Password Authenticationentication
-      final userCredential = await SdpAuthenticationRepository.instance
+      /*final userCredential = */ await SdpAuthenticationRepository.instance
           .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Remove Loader

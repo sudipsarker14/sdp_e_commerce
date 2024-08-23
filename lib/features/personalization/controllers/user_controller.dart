@@ -11,6 +11,7 @@ import 'package:flutter_e_commerce/utils/helpers/network_manager.dart';
 import 'package:flutter_e_commerce/utils/popups/full_screen_loader.dart';
 import 'package:flutter_e_commerce/utils/popups/loaders.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SdpUserController extends GetxController {
   static SdpUserController get instance => Get.find();
@@ -19,6 +20,7 @@ class SdpUserController extends GetxController {
   Rx<SdpUserModel> user = SdpUserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(SdpUserRepository());
@@ -46,26 +48,33 @@ class SdpUserController extends GetxController {
   // Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        // Convert Name to First and Last Name
-        final nameParts =
-            SdpUserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username = SdpUserModel.generateUsername(
-            userCredentials.user!.displayName ?? '');
+      // First Update Rx User and then check if user data is already stored. If not store new data
+      await fetchUserRecord();
 
-        // Map Data
-        final user = SdpUserModel(
-          id: userCredentials.user!.uid,
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          username: username,
-          email: userCredentials.user!.email ?? '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-          profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+      // If no record already stored
+      if (user.value.id.isEmail) {
+        if (userCredentials != null) {
+          // Convert Name to First and Last Name
+          final nameParts =
+              SdpUserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username = SdpUserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        // Save user data
-        await userRepository.saveUserRecord(user);
+          // Map Data
+          final user = SdpUserModel(
+            id: userCredentials.user!.uid,
+            firstName: nameParts[0],
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            username: username,
+            email: userCredentials.user!.email ?? '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+          );
+
+          // Save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       SdpLoaders.warningSnackBar(
@@ -155,6 +164,39 @@ class SdpUserController extends GetxController {
     } catch (e) {
       SdpFullScreenLoader.stopLoading();
       SdpLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
+  }
+
+  // Upload Profile Image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        // Upload Image
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        // Update User Image Rocord
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        
+        SdpLoaders.successSnackBar(
+            title: 'Congratulations',
+            message: 'Your Profile Image has been updated!');
+      }
+    } catch (e) {
+      SdpLoaders.errorSnackBar(
+          title: 'OhSnap', message: 'Something went wrong: $e');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }

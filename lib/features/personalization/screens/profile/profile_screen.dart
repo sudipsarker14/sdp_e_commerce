@@ -7,6 +7,7 @@ import 'package:flutter_e_commerce/features/personalization/screens/profile/widg
 import 'package:flutter_e_commerce/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
+import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -18,7 +19,7 @@ class SdpProfileScreen extends StatelessWidget {
     final controller = SdpUserController.instance;
     return Scaffold(
       appBar: const SdpAppbar(showBackArrow: true, title: Text('Profile')),
-      
+
       // Body
       body: SingleChildScrollView(
           child: Padding(
@@ -30,10 +31,20 @@ class SdpProfileScreen extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  const SdpCircularImage(
-                      image: SdpImages.user, width: 80, height: 80),
+                  Obx(() {
+                    final networkImage = controller.user.value.profilePicture;
+                    final image =
+                        networkImage.isNotEmpty ? networkImage : SdpImages.user;
+                    return controller.imageUploading.value 
+                    ? const SdpShimmerEffect(width: 80, height: 80, redius: 80)
+                    : SdpCircularImage(
+                        image: image,
+                        width: 80,
+                        height: 80,
+                        isNetworkImage: networkImage.isNotEmpty);
+                  }),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () => controller.uploadUserProfilePicture(),
                       child: const Text('Change Profile Picture')),
                 ],
               ),
@@ -50,9 +61,13 @@ class SdpProfileScreen extends StatelessWidget {
             const SizedBox(height: SdpSizes.spaceBtwItems),
 
             SdpProfileMenu(
-                onPressed: () => Get.to(() => const SdpChangeName()), tittle: 'Name', value: controller.user.value.fullName),
+                onPressed: () => Get.to(() => const SdpChangeName()),
+                tittle: 'Name',
+                value: controller.user.value.fullName),
             SdpProfileMenu(
-                onPressed: () {}, tittle: 'Username', value: controller.user.value.username),
+                onPressed: () {},
+                tittle: 'Username',
+                value: controller.user.value.username),
 
             const SizedBox(height: SdpSizes.spaceBtwItems),
             const Divider(),
@@ -70,7 +85,9 @@ class SdpProfileScreen extends StatelessWidget {
                 icon: Iconsax.copy,
                 value: controller.user.value.id),
             SdpProfileMenu(
-                onPressed: () {}, tittle: 'E-mail', value: controller.user.value.email),
+                onPressed: () {},
+                tittle: 'E-mail',
+                value: controller.user.value.email),
             SdpProfileMenu(
                 onPressed: () {},
                 tittle: 'Phone Number',
