@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter_e_commerce/utils/helpers/helper_functions.dart';
-import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
+import 'package:flutter_e_commerce/common/widgets/shimmers/shimmer.dart';
 
 class SdpCircularImage extends StatelessWidget {
   const SdpCircularImage({

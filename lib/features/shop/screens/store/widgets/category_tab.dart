@@ -3,11 +3,14 @@ import 'package:flutter_e_commerce/common/widgets/brands/brand_show_case.dart';
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/shop/models/category_model.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 
 class SdpCategoryTab extends StatelessWidget {
-  const SdpCategoryTab({super.key});
+  const SdpCategoryTab({super.key, required this.category});
+
+  final SdpCategoryModel category;
 
   @override
   Widget build(BuildContext context) {

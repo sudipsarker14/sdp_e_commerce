@@ -7,7 +7,7 @@ import 'package:flutter_e_commerce/features/personalization/screens/profile/widg
 import 'package:flutter_e_commerce/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
-import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
+import 'package:flutter_e_commerce/common/widgets/shimmers/shimmer.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 

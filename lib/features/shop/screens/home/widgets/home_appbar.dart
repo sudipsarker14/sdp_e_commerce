@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/features/personalization/controllers/user_controller.dart';
-import 'package:flutter_e_commerce/utils/popups/shimmer.dart';
+import 'package:flutter_e_commerce/common/widgets/shimmers/shimmer.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';

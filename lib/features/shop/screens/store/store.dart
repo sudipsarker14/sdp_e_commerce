@@ -6,6 +6,7 @@ import 'package:flutter_e_commerce/common/widgets/custom_shapes/containers/searc
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/shop/controllers/category_controller.dart';
 import 'package:flutter_e_commerce/features/shop/screens/brands/all_brands.dart';
 import 'package:flutter_e_commerce/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
@@ -18,8 +19,9 @@ class SdpStoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = SdpCategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: SdpAppbar(
           title:
@@ -76,27 +78,17 @@ class SdpStoreScreen extends StatelessWidget {
                   ),
 
                   /// Tabs
-                  bottom: const SdpTabBar(
-                    tabs: [
-                      Tab(child: Text('Sports')),
-                      Tab(child: Text('Furbiture')),
-                      Tab(child: Text('Electronics')),
-                      Tab(child: Text('Clothes')),
-                      Tab(child: Text('Cosetics')),
-                    ],
+                  bottom: SdpTabBar(
+                    tabs: categories.map((category) => Tab(child: Text(category.name))).toList()
                   ),
                 ),
               ];
             },
 
             ///  Body
-            body: const TabBarView(children: [
-              SdpCategoryTab(),
-              SdpCategoryTab(),
-              SdpCategoryTab(),
-              SdpCategoryTab(),
-              SdpCategoryTab(),
-            ])),
+            body:  TabBarView(
+              children: categories.map((category) => SdpCategoryTab(category: category)).toList()      
+            )),
       ),
     );
   }
