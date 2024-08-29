@@ -63,11 +63,7 @@ class SdpHomeScreen extends StatelessWidget {
           child: Column(
             children: [
               /// -- Promo Slider ---
-              const SdpPromoSlider(banners: [
-                SdpImages.promoBanner1,
-                SdpImages.promoBanner2,
-                SdpImages.promoBanner3
-              ]),
+              const SdpPromoSlider(),
 
               /// Heading
               SdpSectionHeading(
