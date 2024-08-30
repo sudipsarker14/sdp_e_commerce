@@ -4,6 +4,7 @@ import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
 import 'package:flutter_e_commerce/features/shop/models/category_model.dart';
+import 'package:flutter_e_commerce/features/shop/models/product_model.dart';
 import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 
@@ -41,7 +42,7 @@ class SdpCategoryTab extends StatelessWidget {
 
               SdpGridLayout(
                   itemCount: 4,
-                  itemBuilder: (_, index) => const SdpProductCardVertical()),
+                  itemBuilder: (_, index) => SdpProductCardVertical(product: SdpProductModel.empty())),
               const SizedBox(height: SdpSizes.spaceBtwItems),
             ],
           ),

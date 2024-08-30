@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:flutter_e_commerce/features/shop/models/product_model.dart';
 import 'package:flutter_e_commerce/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -33,7 +34,7 @@ class SdpSortableProducts extends StatelessWidget {
         /// products
         SdpGridLayout(
             itemCount: 8,
-            itemBuilder: (_, index) => const SdpProductCardVertical()),
+            itemBuilder: (_, index) => SdpProductCardVertical(product: SdpProductModel.empty())),
       ],
     );
   }

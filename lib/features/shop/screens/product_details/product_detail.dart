@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:flutter_e_commerce/features/shop/models/product_model.dart';
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/bottom_add_to_cart_widget.dart';
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:flutter_e_commerce/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
@@ -12,7 +13,9 @@ import 'package:readmore/readmore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SdpProductDetailScreen extends StatelessWidget {
-  const SdpProductDetailScreen({super.key});
+  const SdpProductDetailScreen({super.key, required this.product});
+
+  final SdpProductModel product;
 
   @override
   Widget build(BuildContext context) {

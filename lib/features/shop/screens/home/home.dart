@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/layouts/grid_layout.dart';
 import 'package:flutter_e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:flutter_e_commerce/common/widgets/shimmers/vertical_product_shimmer.dart';
+import 'package:flutter_e_commerce/features/shop/controllers/product_controller.dart';
 import 'package:flutter_e_commerce/features/shop/screens/all_products/all_products.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:flutter_e_commerce/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:flutter_e_commerce/utils/constants/image_strings.dart';
 import 'package:get/get.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flutter_e_commerce/utils/constants/colors.dart';
@@ -18,6 +19,7 @@ class SdpHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SdpProductController());
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -72,9 +74,20 @@ class SdpHomeScreen extends StatelessWidget {
               const SizedBox(height: SdpSizes.spaceBtwItems),
 
               /// Popular Products
-              SdpGridLayout(
-                  itemCount: 2,
-                  itemBuilder: (_, index) => const SdpProductCardVertical()),
+              Obx(() {
+                if (controller.isLoading.value) {
+                  return const SdpVerticalProductShimmer();
+                }
+
+                if (controller.featuredProducts.isEmpty) {
+                  return Center(
+                      child: Text('No Data Found!',
+                          style: Theme.of(context).textTheme.bodyMedium));
+                }
+                return SdpGridLayout(
+                    itemCount: controller.featuredProducts.length,
+                    itemBuilder: (_, index) => SdpProductCardVertical(product: controller.featuredProducts[index]));
+              }),
             ],
           ),
         ),
